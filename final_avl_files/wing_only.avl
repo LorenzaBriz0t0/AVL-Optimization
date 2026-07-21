@@ -1,0 +1,29 @@
+Jet Trainer wing only (for the x_AC exercise)
+#Mach
+0.5
+#IYsym  IZsym  Zsym
+0      0      0.0
+#Sref   Cref   Bref
+11.73219  1.21509  10.83152
+#Xref   Yref   Zref
+-0.11197  0.0  0.0
+SURFACE
+Wing
+8   1.0   20   -2.0
+YDUPLICATE
+0.0
+
+SECTION
+-0.99492  0.0  0.0  1.73793  -2.9554
+NACA
+2312
+
+SECTION
+-0.31771  3.13756  0.24815  0.97925  -2.9554
+NACA
+2312
+
+SECTION
+0.17401  5.41576  0.42833  0.42838  -2.9554
+NACA
+2312

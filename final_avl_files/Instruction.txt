@@ -1,0 +1,48 @@
+avl aircraft.avl
+
+MASS aircraft.mass
+CASE aircraft.run
+MSET
+0
+OPER
+X
+ST
+st_derivatives.txt
+FT
+total_forces.txt
+
+MODE
+N
+W
+eigenvalues.eig
+
+QUIT
+
+xfoil
+NACA 2312
+OPER
+VISC 4.6e6
+MACH 0.5
+ITER 200
+PACC
+xfoil_polar.txt
+
+ASEQ -4 12 0.5
+PACC
+PPLO
+HARD
+
+QUIT
+mv plot.ps xfoil_polar_plot.ps
+
+xfoil
+NACA 2312
+OPER
+VISC 4.6e6
+MACH 0.5
+ITER 200
+ALFA 6.76
+HARD
+
+QUIT
+mv plot.ps xfoil_cp_cruise.ps

@@ -1,0 +1,154 @@
+=== Overnight pipeline started Wed Jul 15 03:09:29 AM EDT 2026  workers=4  AVL_BIN=~/AVL-Neural-Network-development/vendor/AVL3.52rel09032025/bin/avl
+=== [1/4] Dataset: 4000 LHS samples via real AVL (Wed Jul 15 03:09:30 AM EDT 2026)
+Generated 4000 samples (3923 feasible) -> data/dataset.csv
+=== [2/4] Training the NN surrogate (Wed Jul 15 03:31:06 AM EDT 2026)
+Trained on 3400 samples, validated on 600
+Validation MSE (normalized outputs): 0.65000
+Saved surrogate -> data/surrogate.pt
+=== [3/4] Surrogate-assisted EA (Wed Jul 15 03:31:32 AM EDT 2026)
+Loaded dataset: 4000 rows from ~/AVL-Neural-Network-development/data/dataset.csv
+Loaded surrogate from ~/AVL-Neural-Network-development/data/surrogate.pt
+ntfy notifications (real-AVL-confirmed bests only) -> https://ntfy.sh/avlnn-pipeline
+gen    0  surrogate best= 453.6607  mean= -60.9980
+    real-AVL confirmed new best: fitness=10.6740
+    real-AVL confirmed new best: fitness=10.7762
+    real-AVL confirmed new best: fitness=10.8974
+gen   10  surrogate best= 374.9979  mean= 234.1930
+    real-AVL confirmed new best: fitness=11.0369
+gen   20  surrogate best= 541.3715  mean= 205.9892
+gen   30  surrogate best= 487.5974  mean= 393.9646
+    real-AVL confirmed new best: fitness=11.2620
+    real-AVL confirmed new best: fitness=12.1396
+    real-AVL confirmed new best: fitness=12.2239
+gen   40  surrogate best= 471.6055  mean= 367.4994
+gen   50  surrogate best= 286.0536  mean= 185.2509
+gen   60  surrogate best= 379.9526  mean= 218.6280
+gen   70  surrogate best= 282.8044  mean= 215.8118
+gen   80  surrogate best= 119.1483  mean=  42.0207
+gen   90  surrogate best= 307.7459  mean= 202.1898
+gen  100  surrogate best= 273.1845  mean= 182.8675
+gen  110  surrogate best= 311.1390  mean= 214.1409
+gen  120  surrogate best= 328.3954  mean= 244.6434
+gen  130  surrogate best= 235.6686  mean= 165.0074
+gen  140  surrogate best= 231.0935  mean= 180.7623
+gen  150  surrogate best= 206.8005  mean=  94.6881
+gen  160  surrogate best= 294.1357  mean= 206.9694
+gen  170  surrogate best= 231.0455  mean= 124.8892
+gen  180  surrogate best= 210.1528  mean= 140.8005
+gen  190  surrogate best= 267.8620  mean= 168.4557
+gen  200  surrogate best= 196.0709  mean= 127.8332
+gen  210  surrogate best= 238.2604  mean= 145.7674
+    real-AVL confirmed new best: fitness=12.8604
+gen  220  surrogate best= 255.4800  mean= 178.0500
+gen  230  surrogate best= 444.8542  mean= 353.0028
+gen  240  surrogate best= 250.6897  mean=  74.9619
+gen  250  surrogate best= 188.3376  mean= 118.5854
+gen  260  surrogate best= 104.6797  mean=  48.0558
+gen  270  surrogate best= 239.1361  mean= 160.5506
+gen  280  surrogate best= 164.8095  mean=  73.6239
+gen  290  surrogate best= 210.8305  mean= 105.5455
+gen  300  surrogate best= 189.9632  mean= 140.6457
+gen  310  surrogate best= 258.6131  mean= 167.5092
+gen  320  surrogate best= 161.0596  mean=  99.8772
+gen  330  surrogate best= 180.7857  mean=  69.6496
+gen  340  surrogate best= 300.9546  mean= 182.7040
+gen  350  surrogate best= 217.2681  mean= 126.0959
+    real-AVL confirmed new best: fitness=13.0175
+gen  360  surrogate best= 255.7287  mean= 195.6772
+gen  370  surrogate best= 176.8077  mean= 132.4774
+gen  380  surrogate best= 303.9557  mean= 192.7097
+gen  390  surrogate best=  78.7419  mean=  38.7106
+gen  400  surrogate best= 251.0134  mean= 160.2444
+gen  410  surrogate best= 234.9227  mean= 140.1222
+gen  420  surrogate best= 177.0064  mean=  86.0735
+gen  430  surrogate best= 246.1338  mean= 181.4988
+gen  440  surrogate best= 305.4788  mean= 202.3021
+gen  450  surrogate best= 187.5528  mean= 147.1090
+gen  460  surrogate best= 205.6603  mean= 135.6492
+gen  470  surrogate best= 271.6617  mean= 184.3369
+gen  480  surrogate best= 174.9572  mean=  59.9239
+gen  490  surrogate best= 309.1234  mean= 208.5989
+gen  500  surrogate best= 263.9901  mean= 210.3486
+gen  510  surrogate best= 213.7602  mean= 100.2879
+gen  520  surrogate best= 180.7192  mean= 101.8130
+gen  530  surrogate best= 239.6606  mean= 158.9819
+gen  540  surrogate best= 237.8029  mean= 148.8942
+gen  550  surrogate best= 272.1547  mean= 193.5463
+gen  560  surrogate best= 289.7598  mean= 215.6872
+gen  570  surrogate best= 232.6855  mean= 150.2610
+gen  580  surrogate best= 360.1949  mean= 263.3594
+gen  590  surrogate best= 219.9391  mean= 176.1498
+gen  599  surrogate best= 204.5561  mean= 168.2141
+
+Augmented dataset (4720 rows) -> ~/AVL-Neural-Network-development/data/dataset_augmented.csv
+Updated surrogate -> ~/AVL-Neural-Network-development/data/surrogate.pt
+Best real-AVL-confirmed fitness: 13.0175
+Result written to ~/AVL-Neural-Network-development/runs/surrogate_ea_result.json (archived as surrogate_ea_20260715_033134.json)
+=== [4/4] Pure-AVL EA cross-check (Wed Jul 15 03:40:03 AM EDT 2026)
+ntfy notifications disabled
+gen   0  best= 14.0012  mean=-149.6257
+gen   1  best= 14.0967  mean=-86.4670
+gen   2  best= 14.1089  mean=  8.5460
+gen   3  best= 14.1090  mean= 10.5143
+gen   4  best= 14.1135  mean= 14.0639
+gen   5  best= 14.1137  mean= 14.0707
+gen   6  best= 14.1161  mean=-60.1173
+gen   7  best= 14.1161  mean=-16.6214
+gen   8  best= 14.1166  mean=-36.6582
+gen   9  best= 14.1166  mean= 14.0699
+gen  10  best= 14.1171  mean= 14.1003
+gen  11  best= 14.1171  mean=-11.3321
+gen  12  best= 14.1171  mean= 14.0912
+gen  13  best= 14.1171  mean=-11.2940
+gen  14  best= 14.1174  mean=-11.2566
+gen  15  best= 14.1175  mean=-36.6051
+gen  16  best= 14.1175  mean= 14.0765
+gen  17  best= 14.1177  mean=-68.2336
+gen  18  best= 14.1177  mean= 14.0816
+gen  19  best= 14.1177  mean=-34.0445
+gen  20  best= 14.1177  mean=-11.2516
+gen  21  best= 14.1177  mean= 14.1029
+gen  22  best= 14.1178  mean=-35.9594
+gen  23  best= 14.1178  mean= 14.0823
+gen  24  best= 14.1178  mean=-11.2549
+gen  25  best= 14.1178  mean=-11.2565
+gen  26  best= 14.1178  mean= 14.1103
+gen  27  best= 14.1178  mean=-36.6678
+gen  28  best= 14.1179  mean=-78.8674
+gen  29  best= 14.1179  mean= 14.0808
+gen  30  best= 14.1179  mean=-61.0124
+gen  31  best= 14.1179  mean= 14.0696
+gen  32  best= 14.1179  mean=-27.8785
+gen  33  best= 14.1179  mean=-11.2425
+gen  34  best= 14.1179  mean=-11.2849
+gen  35  best= 14.1180  mean=-35.7987
+gen  36  best= 14.1180  mean=-11.2489
+gen  37  best= 14.1180  mean=-85.5035
+gen  38  best= 14.1180  mean= 14.0983
+gen  39  best= 14.1180  mean=-11.2631
+gen  40  best= 14.1180  mean=-70.9625
+gen  41  best= 14.1180  mean= 14.0913
+gen  42  best= 14.1180  mean=-138.0811
+gen  43  best= 14.1180  mean= 14.1023
+gen  44  best= 14.1180  mean=-36.6117
+gen  45  best= 14.1181  mean=-61.6240
+gen  46  best= 14.1181  mean=-11.2548
+gen  47  best= 14.1181  mean=-61.9536
+gen  48  best= 14.1181  mean=-11.2461
+gen  49  best= 14.1181  mean=-36.5983
+gen  50  best= 14.1181  mean=-11.2521
+gen  51  best= 14.1181  mean=-36.6143
+gen  52  best= 14.1181  mean=-115.7433
+gen  53  best= 14.1181  mean=-182.1041
+gen  54  best= 14.1181  mean=-61.9628
+gen  55  best= 14.1181  mean= 14.0970
+gen  56  best= 14.1181  mean=-133.8748
+gen  57  best= 14.1181  mean=-86.4118
+gen  58  best= 14.1181  mean=-213.2964
+gen  59  best= 14.1182  mean=-11.2621
+
+Best fitness: 14.1182
+Best design written to ~/AVL-Neural-Network-development/runs/ea_result.json (archived as ea_20260715_034003.json, logged in log.csv)
+=== All stages done in 43 min
+surrogate EA (real-AVL): 13.0175
+pure-AVL EA cross-check: 14.1182

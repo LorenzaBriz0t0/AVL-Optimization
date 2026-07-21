@@ -1,0 +1,48 @@
+# Fixed requirements from project_2026.pdf (MECH-4671, University of Windsor).
+# These values are NOT design variables -- they are given constraints on the problem.
+
+mission:
+  mach_cruise: 0.5
+  altitude_cruise_m: 11000.0
+
+mass:
+  total_kg: 4000.0
+  fuselage_fraction: 0.60      # split across 20 point masses (5 rows x 4 points)
+  wing_fraction_each: 0.20     # each wing carries this fraction as a single point mass
+  fuselage_point_mass_kg: 120.0
+  fuselage_n_rows: 5
+  fuselage_points_per_row: 4
+  fuselage_mid_row_index: 2    # zero-based; row 3 of 5 sits at x_b = 0
+  d_fuse_m: 1.5                # fuselage diameter; fuselage points at y=z=+-D_fuse/4
+  wing_point_span_frac: 0.16666666667  # wing point masses at y_b = +-b/6
+
+airfoil:
+  wing_section: NACA2312
+  stall_aoa_deg: 10.0          # highest AoA allowed anywhere on the wing
+
+propulsion:
+  static_thrust_to_weight_sl: 1.5   # T0/W at Mach 0 and sea level
+  thrust_zero_mach: 1.0             # thrust decreases linearly to zero at this Mach
+  # T(M, rho) = T0 * (1 - M/thrust_zero_mach) * (rho / rho_sea_level)
+
+aero:
+  cd0: 0.03
+  # e_O = 1.78*(1 - 0.045*AR^0.68) - 0.64   (Oswald efficiency, computed in code from AR)
+
+tail:
+  airfoil: flat_plate
+  hinge_chord_frac: 0.5        # elevator/rudder hinge line at 50% chord
+  control_span_frac: 1.0       # elevator/rudder span the full tail span
+
+stability:
+  spiral_min_time_constant_s: 20.0   # spiral mode may be unstable only if tau >= this
+
+atmosphere:
+  # ISA standard atmosphere constants (used by src/avlnn/atmosphere.py)
+  g0_m_s2: 9.80665
+  R_air_J_per_kgK: 287.05287
+  gamma_air: 1.4
+  T0_sea_level_K: 288.15
+  p0_sea_level_Pa: 101325.0
+  rho0_sea_level_kg_m3: 1.225
+  lapse_rate_tropo_K_per_m: -0.0065   # valid 0-11000 m (tropopause at 11 km)

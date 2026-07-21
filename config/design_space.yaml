@@ -1,0 +1,60 @@
+# Search bounds for the free design variables explored by the EA / sampled for the NN surrogate
+# dataset. Units: lengths in meters, angles in degrees. Tune these without touching code.
+#
+# All x-locations are in the body-fixed x_b frame from the assignment spec (positive aft, origin
+# at the middle of the 5 fuselage mass rows -- NOT the CG). The CG itself is a derived quantity
+# (see src/avlnn/derived.py:aircraft_cg_x_b); tail arms are measured from that derived CG.
+
+variables:
+  # --- Wing planform ---
+  wing_aspect_ratio:      {min: 4.0,  max: 10.0}
+  wing_taper_ratio:       {min: 0.2,  max: 1.0}
+  wing_sweep_c4_deg:      {min: 0.0,  max: 30.0}
+  wing_dihedral_deg:      {min: -5.0, max: 10.0}
+  wing_incidence_deg:     {min: -3.0, max: 5.0}
+  wing_area_m2:           {min: 10.0, max: 25.0}
+  wing_root_le_x_b_m:     {min: -3.0, max: 1.0}   # x_b of wing root LE (body frame, row 3 = 0)
+
+  # --- Aileron (outboard control surface on the wing) ---
+  aileron_span_start_frac: {min: 0.55, max: 0.75}  # fraction of semispan where aileron begins
+  aileron_chord_frac:      {min: 0.20, max: 0.35}  # aileron chord as fraction of local wing chord
+
+  # --- Horizontal tail ---
+  htail_volume_coeff:     {min: 0.3,  max: 0.8}
+  htail_aspect_ratio:     {min: 3.0,  max: 6.0}
+  htail_sweep_c4_deg:     {min: 0.0,  max: 20.0}
+  htail_arm_m:            {min: 3.0,  max: 6.5}    # x of htail AC aft of CG
+
+  # --- Vertical tail ---
+  vtail_volume_coeff:     {min: 0.02, max: 0.08}
+  vtail_aspect_ratio:     {min: 1.0,  max: 3.0}
+  vtail_sweep_c4_deg:     {min: 10.0, max: 35.0}
+  vtail_arm_m:            {min: 3.0,  max: 6.5}    # x of vtail AC aft of CG
+
+  # --- Fuselage mass-row layout ---
+  # Spacing between the 5 fuselage point-mass rows (row 3 fixed at x_b = 0 per the spec).
+  # Bounds correspond to a 6-10 m mass spread, i.e. a physically plausible jet-trainer
+  # fuselage. Do NOT lower the min: the EA exploits tight spacing to shrink pitch/yaw
+  # inertia and flatter the dynamic-mode margins (it pinned the old 0.4 min immediately).
+  fuselage_row_spacing_m: {min: 1.5,  max: 2.5}
+
+order:
+  # canonical order used when flattening/unflattening the design vector for the EA and the NN
+  - wing_aspect_ratio
+  - wing_taper_ratio
+  - wing_sweep_c4_deg
+  - wing_dihedral_deg
+  - wing_incidence_deg
+  - wing_area_m2
+  - wing_root_le_x_b_m
+  - aileron_span_start_frac
+  - aileron_chord_frac
+  - htail_volume_coeff
+  - htail_aspect_ratio
+  - htail_sweep_c4_deg
+  - htail_arm_m
+  - vtail_volume_coeff
+  - vtail_aspect_ratio
+  - vtail_sweep_c4_deg
+  - vtail_arm_m
+  - fuselage_row_spacing_m
