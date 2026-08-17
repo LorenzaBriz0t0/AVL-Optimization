@@ -87,11 +87,11 @@ def main() -> None:
         nonlocal best_fitness_so_far
         print(
             f"gen {record.generation:3d}  "
-            f"best={record.best_fitness:8.4f}  mean={record.mean_fitness:8.4f}"
+            f"best={record.best_fitness:8.4f}"
         )
         if ntfy_config and record.best_fitness > best_fitness_so_far:
             best_fitness_so_far = record.best_fitness
-            design = space.to_dict(record.best_design)
+            design = space.to_dict(record.design)
             highlights = ", ".join(
                 f"{k}={design[k]:.3g}" for k in (
                     "wing_aspect_ratio", "wing_taper_ratio", "wing_sweep_c4_deg",
@@ -118,7 +118,7 @@ def main() -> None:
         "best_fitness": result.best_fitness,
         "best_design": space.to_dict(result.best_design),
         "history": [
-            {"generation": r.generation, "best_fitness": r.best_fitness, "mean_fitness": r.mean_fitness}
+            {"generation": r.generation,"best_fitness": r.best_fitness, "design":r.design.tolist()}
             for r in result.history
         ],
     }

@@ -36,8 +36,7 @@ class EaConfig:
 class GenerationRecord:
     generation: int
     best_fitness: float
-    mean_fitness: float
-    best_design: np.ndarray
+    design: np.ndarray
 
 
 @dataclasses.dataclass
@@ -135,8 +134,7 @@ def run_ea(
 
         best_i = int(np.argmax(fitness))
         record = GenerationRecord(
-            generation=gen, best_fitness=float(fitness[best_i]),
-            mean_fitness=float(np.mean(fitness)), best_design=pop[best_i].copy(),
+            generation=gen, best_fitness=float(fitness[best_i]), design=pop[best_i].copy(),
         )
         history.append(record)
         if on_generation is not None:

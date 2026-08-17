@@ -112,6 +112,7 @@ def check_dynamic_modes(
 
     return checks
 
+## TO-DO: add flight quality checks
 
 def evaluate_stability(
     x_np: float, x_cg: float, cref: float, alpha_trim_deg: float,
