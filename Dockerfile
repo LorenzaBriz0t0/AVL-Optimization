@@ -1,6 +1,6 @@
 FROM python:3.10-slim
 
-# Install system dependencies for the build script
+# 1. Install system dependencies for the build script
 RUN apt-get update && apt-get install -y \
     sudo \
     build-essential \
@@ -12,20 +12,23 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+
+# 2. Copy the entire repository
 COPY . /app
 
-# Run the provided setup script (this actually works!)
+# 3. Run the provided setup script
 RUN bash scripts/setup_avl.sh
 
-# Find the compiled 'avl' binary (whatever folder it ended up in) and link it to a guaranteed path
-RUN find /app/vendor -name "avl" -type f -executable -exec ln -s {} /usr/local/bin/avl \;
+# 4. Safely link the binary
+RUN BIN_PATH=$(find /app -name "avl" -type f -executable | head -n 1) && \
+    if [ -z "$BIN_PATH" ]; then echo "❌ AVL binary not found!"; exit 1; fi && \
+    ln -s "$BIN_PATH" /usr/local/bin/avl
 
-# Point the Python scripts to our guaranteed path
 ENV AVL_BIN="/usr/local/bin/avl"
 
-# Install Python requirements
-RUN pip install --no-cache-dir -e ".[dev]"
+# 5. Install Python requirements (Now nice and lightweight!)
+RUN pip install --no-cache-dir ".[dev]"
 
-# Set up ENTRYPOINT
+# 6. Set up ENTRYPOINT
 ENTRYPOINT ["xvfb-run", "-a", "python"]
 CMD ["scripts/run_ea.py", "--population", "40", "--generations", "50", "--workers", "4"]
