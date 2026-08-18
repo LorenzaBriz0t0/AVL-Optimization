@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "avlnn"
 version = "0.1.0"
-description = "AVL + neural-network surrogate + evolutionary algorithm pipeline for the MECH-4671 jet trainer design project"
+description = "AVL-based evolutionary optimization pipeline for the MECH-4671 jet trainer design project"
 requires-python = ">=3.10"
 dependencies = [
     "numpy>=1.24",

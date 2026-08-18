@@ -1,0 +1,18 @@
+services:
+  avl:
+    build:
+      context: .
+    image: avl-optimization
+    volumes:
+      - ./runs:/app/runs
+    environment:
+      PYTHONUNBUFFERED: "1"
+    command:
+      - --population
+      - "40"
+      - --generations
+      - "50"
+      - --workers
+      - "4"
+      - --ntfy-topic
+      - ""

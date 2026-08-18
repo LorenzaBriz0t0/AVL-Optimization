@@ -66,6 +66,14 @@ def main() -> None:
         help=f"ntfy server (default {DEFAULT_NTFY_SERVER}, or the {NTFY_SERVER_ENV_VAR} env var)",
     )
     args = parser.parse_args()
+    print("=" * 60, flush=True)
+    print("AVL Aircraft Design Optimization", flush=True)
+    print("=" * 60, flush=True)
+    print(f"Population:    {args.population}", flush=True)
+    print(f"Generations:   {args.generations}", flush=True)
+    print(f"Workers:       {args.workers}", flush=True)
+    print(flush=True)
+    print("Starting evolutionary optimization...", flush=True)
 
     constants = Constants.load()
     space = DesignSpace.load()

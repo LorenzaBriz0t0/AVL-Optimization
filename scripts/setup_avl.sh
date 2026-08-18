@@ -29,11 +29,24 @@ VENDOR_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/vendor"
 mkdir -p "$VENDOR_DIR"
 cd "$VENDOR_DIR"
 
-echo "==> Installing build dependencies (gfortran, X11 dev headers, Xvfb)"
-sudo apt-get update
-# xvfb: AVL's MODE eigenanalysis unconditionally draws an X11 plot and segfaults without a
-# display; avl_driver.py wraps AVL in xvfb-run on headless machines.
-sudo apt-get install -y build-essential gfortran libx11-dev libxext-dev xvfb curl
+# Build dependencies are installed by the caller.
+#
+# In Docker, these are installed in the Dockerfile.
+# On a normal Ubuntu system, install:
+#   build-essential gfortran libx11-dev libxext-dev xvfb curl
+#
+# xvfb: AVL's MODE eigenanalysis unconditionally draws an X11 plot and
+# segfaults without a display; avl_driver.py wraps AVL in xvfb-run on
+# headless machines.
+echo "==> Checking build dependencies"
+
+for cmd in gfortran make curl; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+        echo "!! Required command '$cmd' was not found." >&2
+        echo "   Install the AVL build dependencies before running this script." >&2
+        exit 1
+    fi
+done
 
 fetch() {
   local url="$1" out="$2"
